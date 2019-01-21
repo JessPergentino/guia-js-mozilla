@@ -12,7 +12,8 @@ var app = express();
 
 //Set up mongoose connection
 var mongoose = require('mongoose');
-var mongoDB = 'mongodb://mongodb:Mx6IsSHt6xY21abF@cluster1-shard-00-00-merhy.mongodb.net:27017,cluster1-shard-00-01-merhy.mongodb.net:27017,cluster1-shard-00-02-merhy.mongodb.net:27017/test?ssl=true&replicaSet=Cluster1-shard-0&authSource=admin&retryWrites=true';
+
+var mongoDB = 'mongodb+srv://mongodb:fCjIasL6saQs5L4U@cluster1-merhy.mongodb.net/locallibrary?retryWrites=true';
 mongoose.connect(mongoDB);
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
@@ -33,12 +34,12 @@ app.use('/users', usersRouter);
 app.use('/catalog', catalogRouter);  // Add catalog routes to middleware chain.
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
